@@ -37,13 +37,15 @@
       <input id="button" type="button" value="Enviar" onclick="validarFormulario()">
     </form>
 
+    <div id="datos-enviados" style="display: none;"></div>
+
   </main>
   <script>
     function validarFormulario() {
       const nombre = document.getElementById("nombre").value;
       const email = document.getElementById("email").value;
       const mensaje = document.getElementById("mensaje").value;
-      const emailRegExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      const emailRegExp = /^[a-zA-Z0-9._-]+@[a-zAZ0-9.-]+\.[a-zA-Z]{2,4}$/;
 
       const errorContainer = document.getElementById("error-container");
       errorContainer.innerHTML = "";
@@ -67,6 +69,7 @@
 
       if (valid) {
         mostrarMensajeEnviado();
+        mostrarDatosEnviados();
       }
     }
 
@@ -87,6 +90,16 @@
       formulario.parentNode.appendChild(mensajeEnviado);
     }
 
+    function mostrarDatosEnviados() {
+      const datosEnviados = document.getElementById("datos-enviados");
+      datosEnviados.style.display = "block";
+      datosEnviados.innerHTML = `
+        <h2>Datos Enviados</h2>
+        <p><strong>Nombre:</strong> ${document.getElementById("nombre").value}</p>
+        <p><strong>Email:</strong> ${document.getElementById("email").value}</p>
+        <p><strong>Mensaje:</strong> ${document.getElementById("mensaje").value}</p>
+      `;
+    }
     const images = [
       'https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=1600',
       'https://images.pexels.com/photos/1643457/pexels-photo-1643457.jpeg?auto=compress&cs=tinysrgb&w=1600',
